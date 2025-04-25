@@ -1,0 +1,12 @@
+services:
+  - name: amani-pro-free
+    type: web
+    plan: free
+    env: python
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: gunicorn --workers 1 --threads 2 app:app  # Moins de workers et threads pour économiser la mémoire
+    envVars:
+      - key: FLASK_ENV
+        value: production
